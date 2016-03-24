@@ -85,7 +85,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                     </ul>
         
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Admin Panel</a></li>
+          <li><a href="cms/index.php">Admin Panel</a></li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">UserName <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -156,72 +156,53 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
 
 <table id="sort-table" class="table table-striped">
   <thead>
-   <tr>
-  <th>Doc ID</th>
-  <th>Doc Title</th>
-  <th>Date</th>
-  <th>Sender</th>
-  <th>Receiver</th>
-  <th>Sent</th>
-  <th>Received</th>
-  <th>Replayed</th>
-  <th>Replay Received</th>
-  </tr>
-  </thead>
-  <tr>
-  <td>Doc101</td>
-  <td>Doc one</td>
-  <td>12/12/12</td>
-  <td>Sender one</td>
-  <td>Receiver one</td>
-  <td>check</td>
-  <td>check</td>
-  <td>check</td>
-  <td>check</td>
-  </tr>
-   <tr>
-  <td>Doc102</td>
-  <td>Doc Two</td>
-  <td>12/12/12</td>
-  <td>Sender two</td>
-  <td>Receiver two</td>
-  <td>check</td>
-  <td>check</td>
-  <td>check</td>
-  <td>check</td>
-  </tr>
-  <tr>
-  <td>Doc103</td>
-  <td>Doc three</td>
-  <td>12/12/12</td>
-  <td>Sender three</td>
-  <td>Receiver three</td>
-  <td>check</td>
-  <td>check</td>
-  <td>check</td>
-  <td>check</td>
-  </tr>
+                                  <tr>
+                                    <th>Doc ID</th>
+                                    <th>Doc Title</th>
+                                    <th>Date</th>
+                                    <th>Sender</th>
+                                    <th>Receiver</th>
+                                    <th>Created by</th>
+                                    <th>Category</th>
+                                    <th>Issue Date</th>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Doc101</td>
+                                    <td>Doc one</td>
+                                    <td>12/12/12</td>
+                                    <td>Sender one</td>
+                                    <td>Receiver one</td>
+                                    <td>check</td>
+                                    <td>check</td>
+                                    <td>check</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Doc101</td>
+                                    <td>Doc one</td>
+                                    <td>12/12/12</td>
+                                    <td>Sender one</td>
+                                    <td>Receiver one</td>
+                                    <td>check</td>
+                                    <td>check</td>
+                                    <td>check</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Doc101</td>
+                                    <td>Doc one</td>
+                                    <td>12/12/12</td>
+                                    <td>Sender one</td>
+                                    <td>Receiver one</td>
+                                    <td>check</td>
+                                    <td>check</td>
+                                    <td>check</td>
+                                    
+                                </tr>
   </tbody>
 </table>
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+
 </div>
 </div>
 </div>
@@ -237,9 +218,9 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                    <div class="modal-body modal-sm">
                     <div class="form-group">
                         <form action="" method="post">
-                            <input type="password" class="form-control" name="prev_pass" placeholder="Enter cuerrent Password"><br>
-                            <input type="password" class="form-control"  name="new_pass" placeholder="Enter new Password"><br>
-                            <input type="password" class="form-control"  name="con_pass" placeholder="confirm new Password"><br>
+                            <input type="password" class="form-control" required="" name="prev_pass" placeholder="Enter cuerrent Password"><br>
+                            <input type="password" class="form-control" required="" name="new_pass" placeholder="Enter new Password"><br>
+                            <input type="password" class="form-control" required="" name="con_pass" placeholder="confirm new Password"><br>
                             <input type="submit">
                         </form>
                     </div>
@@ -249,7 +230,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
         </div>
         <!--end-->
 <footer>
-<p>Copyright 2015, All Rights Reserved</p>
+<p>Copyright 2015, All Rights Reserved DarFlow</p>
 </footer>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -285,7 +266,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                 $('input[name=sort]').val($('#sort').val());
             });
             $('tr').click(function () {
-                alert('jack ass');
+                alert('done');
             });
 //                end
     </script>

@@ -85,7 +85,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                     </ul>
         
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Admin Panel</a></li>
+          <li><a href="cms/index.php">Admin Panel</a></li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">UserName <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -151,7 +151,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
-  <td><input type="checkbox"> <input type="text" name="doc_id"></td>
+  <td><input type="checkbox"></td>
  
   </tr>
    <tr>
@@ -163,7 +163,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
     <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
-  <td><input type="checkbox"> <input type="text" name="doc_id"></td>
+  <td><input type="checkbox"></td>
   </tr>
   <tr>
   <td>Doc101</td>
@@ -174,7 +174,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
     <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
-  <td><input type="checkbox"> <input type="text" name="doc_id"></td>
+  <td><input type="checkbox"></td>
   </tr>
 </table>
 <br>
@@ -201,7 +201,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
-  <td><input type="checkbox"> <input type="text" name="doc_id"></td>
+  <td><input type="checkbox"></td>
   </tr>
    <tr>
   <td>Doc101</td>
@@ -212,7 +212,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
-  <td><input type="checkbox"> <input type="text" name="doc_id"></td>
+  <td><input type="checkbox"></td>
   </tr>
   <tr>
   <td>Doc101</td>
@@ -223,7 +223,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
   <td><input type="checkbox"></td>
-  <td><input type="checkbox"> <input type="text" name="doc_id"></td>
+  <td><input type="checkbox"></td>
   </tr>
 </table>
 </div>
@@ -240,9 +240,9 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                    <div class="modal-body modal-sm">
                     <div class="form-group">
                         <form action="" method="post">
-                            <input type="password" class="form-control" name="prev_pass" placeholder="Enter cuerrent Password"><br>
-                            <input type="password" class="form-control"  name="new_pass" placeholder="Enter new Password"><br>
-                            <input type="password" class="form-control"  name="con_pass" placeholder="confirm new Password"><br>
+                            <input type="password" class="form-control" required="" name="prev_pass" placeholder="Enter cuerrent Password"><br>
+                            <input type="password" class="form-control" required="" name="new_pass" placeholder="Enter new Password"><br>
+                            <input type="password" class="form-control" required="" name="con_pass" placeholder="confirm new Password"><br>
                             <input type="submit">
                         </form>
                     </div>
@@ -252,7 +252,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
         </div>
         <!--end-->
 <footer>
-<p>Copyright 2015, All Rights Reserved</p>
+<p>Copyright 2015, All Rights Reserved DarFlow</p>
 </footer>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -289,7 +289,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                 $('input[name=sort]').val($('#sort').val());
             });
             $('tr').click(function () {
-                alert('jack ass');
+                alert('Done!');
             });
 //                end
     </script>

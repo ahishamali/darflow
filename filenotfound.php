@@ -117,26 +117,13 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])){
 </div>
 </div>
 <div class="col-md-8">
-    <div class="row">
-        <div>
-           <fieldset> <legend>View</legend>
-        <div class="col-md-4">
-            <strong><h4>Doc ID:</strong> <span  class="h4 ">A101</span> </h4>
-            <strong><h4>Title:</strong> <span class="h4">Any Title</span> </h4>
-            <strong><h4>Sender:</strong> <span class="h4">Any sender</span> </h4>
-            <strong><h4>Receiver:</strong></h4>
-            <strong><h4>Sent:</strong> </h4>
-            <strong><h4>Received:</strong> </h4>
-                <strong><h4>Replayed:</strong> <a href="#">Doc ID</a></h4>
-             
-        </div>
-        <div class="col-md-8">
-            
-                
-                <iframe height="450" width="400" src=""></iframe>
-            
-        </div>
-        </fieldset></div></div>
+    <div id="error" class="jumbotron" >
+           <br><br><br><br>
+        <h1><strong>ERROR</strong></h1>
+        <h1><strong>FILE NOT FOUND</strong></h1>
+        <br><h1>....</h1>
+
+</div>
 </div>
 </div>
     </section>
