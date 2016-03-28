@@ -1,6 +1,10 @@
 body {
 
 }
+tr:hover > td{
+    background: #999999;
+    cursor: pointer;
+}
 .navbar{
     border-radius:0;
 }
@@ -59,7 +63,7 @@ footer{
     padding-top:20px;
     padding-bottom:10px;
     text-align:center;
-    background-color:#090909;
+    background-color: #121212;
     color:#fff;
 }
 .actions{
@@ -76,7 +80,7 @@ footer{
 .box{
 
     height: 300px;
-    background: #090909;
+    background: black;
     color: aliceblue;
     margin:30px;
 
@@ -92,10 +96,4 @@ footer{
     bottom: 5px;
     color: #fff;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-#error{
-    color: red;
-    text-align: center;
-    
-      
 }

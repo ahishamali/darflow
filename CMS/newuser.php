@@ -1,8 +1,11 @@
 <?php
 require '../include/init.php';
 
-if ($_SESSION['user_type'] != 'admin'){
-                header("location: login.php");
+$login = new login();
+
+if ($_SESSION['user_type'] !== 'admin'){
+                $login->end_session();
+                header("location: ../index.php");
                 exit();
     }
 $log = new login_Admin();

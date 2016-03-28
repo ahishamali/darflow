@@ -2,10 +2,12 @@
 require '../include/init.php';
 
 $log = new login_Admin();
+$login = new login();
 $cat = new cat();
 
-if ($_SESSION['user_type'] != 'admin'){
-                header("location: login.php");
+if ($_SESSION['user_type'] !== 'admin'){
+                $login->end_session();
+                header("location: ../index.php");
                 exit();
     }
 

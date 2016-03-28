@@ -1,5 +1,6 @@
 <?php
 //start
+
 require_once 'include/init.php';
 
 $login = new login();
@@ -41,13 +42,14 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DarFlow - Index</title>
         <!-- Bootstrap core CSS -->
-       <link rel="stylesheet" href="lib/css/bootstrap.min.css">
-  <script src="lib/js/jquery.min.js"></script>
-  <script src="lib/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+        <script src="lib/js/jquery.min.js"></script>
+        <script src="lib/js/bootstrap.min.js"></script>
         <link href="lib/css/bootstrap.css" rel="stylesheet">
         <link href="lib/css/font-awesome.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="lib/css/style.css" rel="stylesheet">
+        <script src="lib/js/main.js"></script>
     </head>
 
     <body>
@@ -85,9 +87,9 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Admin Panel</a></li>
+                        <?php if ($_SESSION['user_type'] === 'admin') { ?><li><a href="CMS/">Admin Panel</a></li><?php } ?>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">UserName <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $_SESSION['user_name']; ?> <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#change_pass" data-toggle="modal">Change Password</a></li>
                                 <li class="divider"></li>
@@ -101,13 +103,13 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
             <div id="adv_search" style="background: black;display: none;">
                 <div class="col-lg-2" style="margin-left: 96px;">
                     <select id="cat_id" class="form-control">
-                    <option disabled selected>-- Select Category --</option>
-                    <?php foreach ($cat->get_cat() as $row) { ?>
-                        <option value="<?php echo $row['cat_id']; ?>"><?php echo $row['cat_title']; ?></option>
-                    <?php } ?>
-                </select>
+                        <option disabled selected>-- Select Category --</option>
+                        <?php foreach ($cat->get_cat() as $row) { ?>
+                            <option value="<?php echo $row['cat_id']; ?>"><?php echo $row['cat_title']; ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
-                 <div class="col-lg-2">
+                <div class="col-lg-2">
                     <select id="sort" class="form-control">
                         <option disabled selected>-- Select sort option --</option>
                         <option value="asc">Asc</option>
@@ -121,47 +123,48 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
         <?php if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) { ?>
             <?php require_once 'search.php'; ?>
         <?php } else { ?>
-        <!--end-->
+            <!--end-->
             <section>
                 <div class="container" >
                     <a href="archive.php"><div id="main-center" class="row">
                             <div class="col-lg-5 box">
-                                <?php foreach ($inbox->display_latest() as $row) { ?>
+                                <?php foreach ($inbox->display_latest(2) as $row) { ?>
                                     <h4><?php echo $row['doc_title']; ?></h4>
                                 <?php } ?>
                                 <br>
-                                <?php foreach ($outbox->display_latest() as $row) { ?>
+                                <?php foreach ($outbox->display_latest(2) as $row) { ?>
                                     <h4><?php echo $row['doc_title']; ?></h4>
                                 <?php } ?>
                                 <div><h2>Archive</h2></div>
                             </div></a>
                     <a href="tracking.php"><div class="col-lg-5  box">
                             <?php foreach ($track->display_pend() as $row) { ?>
-                            <h4><?php echo $inbox->get_by_id($row['doc_id']);echo $outbox->get_by_id($row['doc_id']); ?></h4>
-                            <?php } ?>
+                                <h4><?php echo $inbox->get_title_by_id($row['doc_id']);
+                        echo $outbox->get_title_by_id($row['doc_id']); ?></h4>
+    <?php } ?>
                             <div><h2>Tracking</h2></div>
                         </div></a>
                 </div>
             </section>
-        <?php } ?>
-         <!--start-->
+<?php } ?>
+        <!--start-->
         <div class="modal" id="change_pass" >
             <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h4>Change password</h4>
-            </div>
-                   <div class="modal-body modal-sm">
-                    <div class="form-group">
-                        <form action="" method="post">
-                            <input type="password" class="form-control" name="prev_pass" placeholder="Enter cuerrent Password"><br>
-                            <input type="password" class="form-control"  name="new_pass" placeholder="Enter new Password"><br>
-                            <input type="password" class="form-control"  name="con_pass" placeholder="confirm new Password"><br>
-                            <input type="submit">
-                        </form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Change password</h4>
                     </div>
+                    <div class="modal-body modal-sm">
+                        <div class="form-group">
+                            <form action="" method="post">
+                                <input type="password" class="form-control" name="prev_pass" placeholder="Enter cuerrent Password"><br>
+                                <input type="password" class="form-control"  name="new_pass" placeholder="Enter new Password"><br>
+                                <input type="password" class="form-control"  name="con_pass" placeholder="confirm new Password"><br>
+                                <input type="submit">
+                            </form>
+                        </div>
                     </div>
-            </div>
+                </div>
             </div>
         </div>
         <!--end-->
@@ -172,7 +175,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
 
-        
+
         <script>
             var $rows = $('table tr');
             $('.search-form').keyup(function () {
@@ -194,9 +197,6 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
             });
             $('#sort').change(function () {
                 $('input[name=sort]').val($('#sort').val());
-            });
-            $('tr').click(function () {
-                alert('jack ass');
             });
 //                end
         </script>

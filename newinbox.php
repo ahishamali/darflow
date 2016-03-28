@@ -81,14 +81,10 @@ if (isset($_REQUEST['doc_id'], $_REQUEST['doc_title'], $_REQUEST['sender'], $_RE
         }
     } else {
         $errors[] = '<div class="alert alert-dismissible alert-danger text-center">
-								<strong>Ops! </strong> Your submit can not be empty or spaces
+								<strong>Ops! </strong>Four inputs required, And your submit can not be empty or spaces
 								</div> ';
     }
-} else {
-    $errors[] = '<div class="alert alert-dismissible alert-danger text-center">
-								<strong>Ops! </strong>Your submit need at least four input
-								</div>';
-}
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -147,9 +143,9 @@ if (isset($_REQUEST['doc_id'], $_REQUEST['doc_title'], $_REQUEST['sender'], $_RE
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Admin Panel</a></li>
+                        <?php if ($_SESSION['user_type'] === 'admin') { ?><li><a href="CMS/">Admin Panel</a></li><?php } ?>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">UserName <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $_SESSION['user_name']; ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#change_pass" data-toggle="modal">Change Password</a></li>
                                     <li class="divider"></li>
@@ -191,10 +187,10 @@ if (isset($_REQUEST['doc_id'], $_REQUEST['doc_title'], $_REQUEST['sender'], $_RE
                     <div class="row">
                         <div class="col-md-4">
                             <div class="list-group">
-                                <a href="archive.php" class="list-group-item active">
+                                <a href="archive.php" class="list-group-item">
                                     <i class="fa fa-file"></i> Archive
                                 </a>
-                                <a href="inbox.php" class="list-group-item"><i class="fa fa-download"></i> Inbox</a>
+                                <a href="inbox.php" class="list-group-item active"><i class="fa fa-download"></i> Inbox</a>
                                 <a href="outbox.php" class="list-group-item"><i class="fa fa-upload"></i> Outbox</a>
                                 <a href="categories.php" class="list-group-item"><i class="fa fa-th"></i> Categories</a>
 
@@ -233,23 +229,10 @@ if (isset($_REQUEST['doc_id'], $_REQUEST['doc_title'], $_REQUEST['sender'], $_RE
                                 </div>
                                 <div class="form-group">
                                     <label>Attachment</label>
-                                        <select name="category" class="form-control">
-                                    <option selected="" disabled="">--select one--</option>
-                                    <option value="1">Document</option>
-                                    <option value="2">Thing</option>
-                                </select>
-
-                              </div>
-                                    <div class="form-group">
-                                     <input name="attach_doc" type="file">
-                                     <textarea class="form-control" name="attach_other" rows="3" id="textArea" placeholder="name of attachment....."></textarea>
-                                </div>
-
-  
-        <div class="form-group">
-         <input name="attach_doc" type="file">
-         <textarea class="form-control" name="attach_other" rows="3" id="textArea" placeholder="name of attachment....."></textarea>
-    </div>
+                                    <select name="attach_other" class="form-control">
+                                        <option value="1">Document</option>
+                                        <option value="2">Thing</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Category</label>
@@ -291,9 +274,9 @@ if (isset($_REQUEST['doc_id'], $_REQUEST['doc_title'], $_REQUEST['sender'], $_RE
                     <div class="modal-body modal-sm">
                         <div class="form-group">
                             <form action="" method="post">
-                                <input type="password" class="form-control" required="" name="prev_pass" placeholder="Enter cuerrent Password"><br>
-                                <input type="password" class="form-control" required="" name="new_pass" placeholder="Enter new Password"><br>
-                                <input type="password" class="form-control" required="" name="con_pass" placeholder="confirm new Password"><br>
+                                <input type="password" class="form-control" name="prev_pass" placeholder="Enter cuerrent Password"><br>
+                                <input type="password" class="form-control"  name="new_pass" placeholder="Enter new Password"><br>
+                                <input type="password" class="form-control"  name="con_pass" placeholder="confirm new Password"><br>
                                 <input type="submit">
                             </form>
                         </div>
@@ -303,7 +286,7 @@ if (isset($_REQUEST['doc_id'], $_REQUEST['doc_title'], $_REQUEST['sender'], $_RE
         </div>
         <!--end-->
         <footer>
-            <p>Copyright 2015, All Rights Reserved DarFlow</p>
+            <p>Copyright 2015, All Rights Reserved</p>
         </footer>
         <!-- Bootstrap core JavaScript
         ================================================== -->

@@ -30,15 +30,25 @@ class outbox extends connection {
         return $result;
     }
     
-    public function display_latest() {
-        $result = $this->conn->query("select * from outboxes order by create_on desc limit 2");
+    public function display_latest($count) {
+        $result = $this->conn->query("select * from outboxes order by create_on desc limit $count");
+        return $result;
+    }
+    
+    public function get_title_by_id($doc_id) {
+        $result = $this->conn->query("select * from outboxes where doc_id = '$doc_id'");
+        $result = $result->fetch_assoc();
+        return $result['doc_title'];
+    }
+    
+    public function get_by_cat_id($cat_id) {
+        $result = $this->conn->query("select * from outboxes where cat_id = '$cat_id'");
         return $result;
     }
     
     public function get_by_id($doc_id) {
         $result = $this->conn->query("select * from outboxes where doc_id = '$doc_id'");
-        $result = $result->fetch_assoc();
-        return $result['doc_title'];
+        return $result;
     }
 
 }

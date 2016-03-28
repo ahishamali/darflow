@@ -1,5 +1,6 @@
 <?php
 //start
+
 require_once 'include/init.php';
 
 $login = new login();
@@ -42,13 +43,14 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DarFlow - Archive</title>
         <!-- Bootstrap core CSS -->
-       <link rel="stylesheet" href="lib/css/bootstrap.min.css">
-  <script src="lib/js/jquery.min.js"></script>
-  <script src="lib/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+        <script src="lib/js/jquery.min.js"></script>
+        <script src="lib/js/bootstrap.min.js"></script>
         <link href="lib/css/bootstrap.css" rel="stylesheet">
         <link href="lib/css/font-awesome.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="lib/css/style.css" rel="stylesheet">
+        <script src="lib/js/main.js"></script>
     </head>
 
     <body>
@@ -81,18 +83,20 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
 
                     </form>
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
-                        echo (isset($_REQUEST['advance'])) ? "" : "?advance"; ?>" title="Advance Search"><i class="glyphicon glyphicon-cog"></i></a></li>
+                        <li><a href="<?php
+                            echo htmlspecialchars($_SERVER['PHP_SELF']);
+                            echo (isset($_REQUEST['advance'])) ? "" : "?advance";
+                            ?>" title="Advance Search"><i class="glyphicon glyphicon-cog"></i></a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="cms/index.php">Admin Panel</a></li>
+                        <?php if ($_SESSION['user_type'] === 'admin') { ?><li><a href="CMS/">Admin Panel</a></li><?php } ?>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">UserName <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $_SESSION['user_name']; ?> <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#change_pass" data-toggle="modal">Change Password</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Logout</a></li>
+                                <li><a href="?logout">Logout</a></li>
 
                             </ul></li>
                     </ul>
@@ -148,44 +152,24 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                                     <th>Date</th>
                                     <th>Sender</th>
                                     <th>Receiver</th>
-                                    <th>Created by</th>
-                                    <th>Category</th>
-                                    <th>Issue Date</th>
-                                    
+                                    <th>Sent</th>
+                                    <th>Received</th>
+                                    <th>Replayed</th>
+                                    <th>Replay Received</th>
                                 </tr>
-                                <tr>
-                                    <td>Doc101</td>
-                                    <td>Doc one</td>
-                                    <td>12/12/12</td>
-                                    <td>Sender one</td>
-                                    <td>Receiver one</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>Doc101</td>
-                                    <td>Doc one</td>
-                                    <td>12/12/12</td>
-                                    <td>Sender one</td>
-                                    <td>Receiver one</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>Doc101</td>
-                                    <td>Doc one</td>
-                                    <td>12/12/12</td>
-                                    <td>Sender one</td>
-                                    <td>Receiver one</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    
-                                </tr>
+    <?php foreach ($inbox->display_latest(3) as $row) { ?>
+                                    <tr>
+                                        <td><?php echo $row['doc_id']; ?></td>
+                                        <td><?php echo $row['doc_title']; ?></td>
+                                        <td>12/12/12</td>
+                                        <td>Sender one</td>
+                                        <td>Receiver one</td>
+                                        <td>check</td>
+                                        <td>check</td>
+                                        <td>check</td>
+                                        <td>check</td>
+                                    </tr>
+    <?php } ?>
                             </table>
                             <a class="btn btn-default" href="inbox.php">View All Inbox</a>
                             <hr>
@@ -197,44 +181,24 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                                     <th>Date</th>
                                     <th>Sender</th>
                                     <th>Receiver</th>
-                                    <th>Created by</th>
-                                    <th>Category</th>
-                                    <th>Issue Date</th>
-                                    
+                                    <th>Sent</th>
+                                    <th>Received</th>
+                                    <th>Replayed</th>
+                                    <th>Replay Received</th>
                                 </tr>
-                                <tr>
-                                    <td>Doc101</td>
-                                    <td>Doc one</td>
-                                    <td>12/12/12</td>
-                                    <td>Sender one</td>
-                                    <td>Receiver one</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>Doc101</td>
-                                    <td>Doc one</td>
-                                    <td>12/12/12</td>
-                                    <td>Sender one</td>
-                                    <td>Receiver one</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>Doc101</td>
-                                    <td>Doc one</td>
-                                    <td>12/12/12</td>
-                                    <td>Sender one</td>
-                                    <td>Receiver one</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    <td>check</td>
-                                    
-                                </tr>
+    <?php foreach ($outbox->display_latest(3) as $row) { ?>
+                                    <tr>
+                                        <td><?php echo $row['doc_id']; ?></td>
+                                        <td><?php echo $row['doc_title']; ?></td>
+                                        <td>12/12/12</td>
+                                        <td>Sender one</td>
+                                        <td>Receiver one</td>
+                                        <td>check</td>
+                                        <td>check</td>
+                                        <td>check</td>
+                                        <td>check</td>
+                                    </tr>
+    <?php } ?>
                             </table>
                             <a class="btn btn-default" href="outbox.php">View All Outbox</a>
                         </div>
@@ -242,29 +206,29 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                 </div>
             </section>
 <?php } ?>
-             <!--start-->
+        <!--start-->
         <div class="modal" id="change_pass" >
             <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h4>Change password</h4>
-            </div>
-                   <div class="modal-body modal-sm">
-                    <div class="form-group">
-                        <form action="" method="post">
-                            <input type="password" class="form-control" required="" name="prev_pass" placeholder="Enter cuerrent Password"><br>
-                            <input type="password" class="form-control" required=""  name="new_pass" placeholder="Enter new Password"><br>
-                            <input type="password" class="form-control" required="" name="con_pass" placeholder="confirm new Password"><br>
-                            <input type="submit">
-                        </form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Change password</h4>
                     </div>
+                    <div class="modal-body modal-sm">
+                        <div class="form-group">
+                            <form action="" method="post">
+                                <input type="password" class="form-control" name="prev_pass" placeholder="Enter cuerrent Password"><br>
+                                <input type="password" class="form-control"  name="new_pass" placeholder="Enter new Password"><br>
+                                <input type="password" class="form-control"  name="con_pass" placeholder="confirm new Password"><br>
+                                <input type="submit">
+                            </form>
+                        </div>
                     </div>
-            </div>
+                </div>
             </div>
         </div>
         <!--end-->
         <footer>
-            <p>Copyright 2015, All Rights Reserved DarFlow</p>
+            <p>Copyright 2015, All Rights Reserved SAR</p>
         </footer>
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -294,10 +258,7 @@ if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
             $('#sort').change(function () {
                 $('input[name=sort]').val($('#sort').val());
             });
-            $('tr').click(function () {
-                alert('done!');
-            });
- //                end
+            //                end
         </script>
     </body>
 </html>

@@ -30,15 +30,25 @@ class inbox extends connection {
         return $result;
     }
     
-    public function display_latest() {
-        $result = $this->conn->query("select * from inboxes order by create_on desc limit 2");
+    public function display_latest($count) {
+        $result = $this->conn->query("select * from inboxes order by create_on desc limit $count");
+        return $result;
+    }
+    
+    public function get_title_by_id($doc_id) {
+        $result = $this->conn->query("select * from inboxes where doc_id = '$doc_id'");
+        $data = $result->fetch_assoc();
+        return $data['doc_title'];
+    }
+    
+    public function get_by_cat_id($cat_id) {
+        $result = $this->conn->query("select * from inboxes where cat_id = '$cat_id'");
         return $result;
     }
     
     public function get_by_id($doc_id) {
         $result = $this->conn->query("select * from inboxes where doc_id = '$doc_id'");
-        $data = $result->fetch_assoc();
-        return $data['doc_title'];
+        return $result;
     }
 }
 

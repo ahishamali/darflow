@@ -2,6 +2,8 @@
 
 require_once 'include/init.php';
 
+$error = array();
+
 $login = new login();
 if (isset($_REQUEST['user_name'],$_REQUEST['user_password']) && !empty($_REQUEST['user_name']) && !empty($_REQUEST['user_password'])){
     extract($_REQUEST);
@@ -11,7 +13,9 @@ if (isset($_REQUEST['user_name'],$_REQUEST['user_password']) && !empty($_REQUEST
         exit();
     }else{
 //        error login
-        echo 'error';
+        $error['login'] = "<div class='alert alert-dismissible alert-danger'>
+    <h4 class='text-center'><strong>invalid user name or password !!</strong></h4>
+</div>";
     }
 }
 
@@ -47,10 +51,7 @@ if ($login->get_session()){
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
-<div class="alert alert-dismissible alert-danger hidden">
-    <h4 class="text-center"><strong>invalid user name or password !!</strong></h4>
-</div>
-
+    <?php echo isset($error['login'])?$error['login']:""; ?>
     </div>
       
 
